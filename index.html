@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoryStack</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevents scrolling */
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+        header {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevents inner content from overflowing */
+        }
+        .content img {
+            max-width: 100%;
+            max-height: 100%; /* Limits the image height to 100% of the content area's height */
+            height: auto;
+            object-fit: contain; /* Ensures the aspect ratio is maintained */
+        }
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>storiestack</h1>
+    </header>
+
+    <div class="content">
+        <img src="https://res.cloudinary.com/dsegbjat2/image/upload/v1722548661/defaultImage_bfai81.png" alt="Random Black and White Cartoon">
+    </div>
+    <footer>
+        <p>Made with ❤️ in Montreal</p>
+    </footer>
+</body>
+</html>

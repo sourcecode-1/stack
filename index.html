@@ -30,12 +30,12 @@
             justify-content: center;
             align-items: center;
             overflow: hidden; /* Prevents inner content from overflowing */
+            text-align: center; /* Centers text horizontally */
         }
         .content h2 {
             margin: 0;
             font-size: 24px; /* Adjust font size as needed */
             color: #e4cc28; /* Text color for "Coming Soon..." */
-            text-align: center; /* Center aligns the text horizontally */
             margin-bottom: 20px; /* Adds space between the text and the image */
         }
         .content img {
@@ -49,15 +49,21 @@
         .waitlist-container {
             margin-top: 20px; /* Adds space above the waitlist input */
             display: flex;
-            justify-content: center;
+            flex-direction: column; /* Stack input and button vertically on small screens */
             align-items: center;
+            width: 100%; /* Full width for mobile responsiveness */
+            max-width: 600px; /* Optional: limits the maximum width */
+            margin-left: auto;
+            margin-right: auto;
         }
         .waitlist-container input {
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-right: 10px; /* Space between the textbox and button */
+            margin-bottom: 10px; /* Space between the textbox and button on small screens */
+            width: 50%; /* Full width on small screens */
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
         }
         .waitlist-container button {
             padding: 10px 20px;
@@ -67,6 +73,8 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            width: 50%; /* Full width on small screens */
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
         }
         .waitlist-container button:hover {
             background-color: #d1b322; /* Slightly darker shade on hover */
@@ -81,6 +89,16 @@
             color: #007BFF;
             text-decoration: none;
         }
+
+        /* Media query for devices with max-width 600px */
+        @media (max-width: 600px) {
+            .content h2 {
+                font-size: 20px; /* Adjust font size for smaller screens */
+            }
+            .content img {
+                max-height: 60%; /* Adjust image height for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -92,7 +110,7 @@
         <h2>Coming Soon...</h2>
         <img src="https://res.cloudinary.com/dsegbjat2/image/upload/v1722548661/defaultImage_bfai81.png" alt="Random Black and White Cartoon">
         <div class="waitlist-container">
-            <input type="email" id="emailInput" placeholder="Enter your email" style="width: 250px;" />
+            <input type="email" id="emailInput" placeholder="Enter your email" />
             <button id="joinButton">Join Waitlist</button>
         </div>
     </div>

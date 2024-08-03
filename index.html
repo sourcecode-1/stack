@@ -46,6 +46,31 @@
             border: 5px solid #e4cc28; /* Adds a yellow border around the image */
             box-sizing: border-box; /* Ensures the border is included in the element's total width and height */
         }
+        .waitlist-container {
+            margin-top: 20px; /* Adds space above the waitlist input */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .waitlist-container input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px; /* Space between the textbox and button */
+        }
+        .waitlist-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e4cc28;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .waitlist-container button:hover {
+            background-color: #d1b322; /* Slightly darker shade on hover */
+        }
         footer {
             background-color: black;
             color: white;
@@ -66,9 +91,57 @@
     <div class="content">
         <h2>Coming Soon...</h2>
         <img src="https://res.cloudinary.com/dsegbjat2/image/upload/v1722548661/defaultImage_bfai81.png" alt="Random Black and White Cartoon">
+        <div class="waitlist-container">
+            <input type="email" id="emailInput" placeholder="Enter your email" style="width: 250px;" />
+            <button id="joinButton">Join Waitlist</button>
+        </div>
     </div>
     <footer>
         <p>Made with ❤️ in Montréal</p>
     </footer>
+
+    <script>
+        document.getElementById('joinButton').addEventListener('click', async () => {
+            const emailInput = document.getElementById('emailInput');
+            const email = emailInput.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!email) {
+                alert('Please enter an email address.');
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/submit-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ emailId: email })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Successfully joined the waitlist!');
+                    emailInput.value = ''; // Clear the input field after successful insertion
+                } else {
+                    alert('Failed to join waitlist. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to join waitlist. Please try again.');
+            }
+        });
+    </script>
 </body>
 </html>
